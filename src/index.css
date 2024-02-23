@@ -56,13 +56,36 @@
   background: #ccc;
 }
 
+.icon {
+  color: var(--main-color);
+}
+
 .content {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
 }
 
-/* blog previews / list */
+/* transaction previews / list */
+
+.transactions h3 {
+text-align: center;
+color: var(--main-color);
+margin: 8px;
+font-size: 20px;
+}
+
+.transaction-details {
+  padding: 10px 16px;
+  margin: 20px 0;
+  border-bottom: 1px solid #fafafa;
+}
+
+.transaction-details:hover {
+  box-shadow: 1px 3px 5px rgba(0, 0, 0,.1);
+}
+
+
 .home {
   padding: 10px 12px;
   margin: 20px 0;

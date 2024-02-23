@@ -33,7 +33,7 @@ const Navbar = ({ currentBlockNumber }) => {
             onChange={(e) => setBlockNumber(e.target.value)}
           />
           <button>
-            <i className="fas fa-search"></i>
+            <i className="fas fa-search icon"></i>
           </button>
         </form>
       </div>
