@@ -3,19 +3,9 @@ import "@fortawesome/fontawesome-free/css/all.css";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-const Navbar = ({ alchemy }) => {
+const Navbar = ({ currentBlockNumber }) => {
   const [blockNumber, setBlockNumber] = useState("");
   const history = useHistory();
-
-  const [currentBlockNumber, setCurrentBlockNumber] = useState();
-
-  useEffect(() => {
-    async function getBlockNumber() {
-      setCurrentBlockNumber(await alchemy.core.getBlockNumber());
-    }
-
-    getBlockNumber();
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +19,9 @@ const Navbar = ({ alchemy }) => {
         <Link to="/">
           <h1>Ethereum Block Explorer</h1>
         </Link>
-        <p>Current Block Number: {currentBlockNumber}</p>
+        <Link to={`/block/${currentBlockNumber}`}>
+          <p>Latest Block Number: {currentBlockNumber}</p>
+        </Link>
       </div>
 
       <div className="search-container">

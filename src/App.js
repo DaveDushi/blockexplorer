@@ -21,18 +21,26 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function App() {
+  const [currentBlockNumber, setCurrentBlockNumber] = useState();
+  useEffect(() => {
+    async function getBlockNumber() {
+      setCurrentBlockNumber(await alchemy.core.getBlockNumber());
+    }
+
+    getBlockNumber();
+  });
   return (
     <Router>
       <div className="app">
-        <Navbar alchemy={alchemy} />
+        <Navbar currentBlockNumber={currentBlockNumber} />
       </div>
       <div className="content">
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home currentBlockNumber={currentBlockNumber} />
           </Route>
           <Route path="/block/:blockNumber">
-            <BlockDetails />
+            <BlockDetails alchemy={alchemy} />
           </Route>
         </Switch>
       </div>
