@@ -36,8 +36,8 @@ const BlockDetails = ({ alchemy }) => {
       .padStart(2, "0")}`;
   };
 
-  const hexToDecimal = (hex) => {
-    return parseInt(hex, 16);
+  const hexToDecimal = (string) => {
+    return parseInt(string);
   };
 
   return (
@@ -51,14 +51,14 @@ const BlockDetails = ({ alchemy }) => {
           <h4>Date Mined: {formattedDate(data.timestamp)}</h4>
           <h4>
             Base Gas Price:{" "}
-            {data.baseFeePerGas && formatUnits(data.baseFeePerGas._hex, "gwei")}{" "}
+            {data.baseFeePerGas &&
+              formatUnits(data.baseFeePerGas.toString(), "gwei")}{" "}
             Gwei
           </h4>
           <h4>
-            Gas Used:{" "}
-            {data.gasUsed && hexToDecimal(data.gasUsed._hex).toLocaleString()} (
+            Gas Used: {data.gasUsed && data.gasUsed.toLocaleString()} (
             {data.gasUsed &&
-              Math.round((hexToDecimal(data.gasUsed._hex) / 30000000) * 100)}
+              Math.round((data.gasUsed.toString() / 30000000) * 100)}
             %)
           </h4>
 
@@ -76,17 +76,17 @@ const BlockDetails = ({ alchemy }) => {
                   </p>
                   <p>
                     <strong>Value:</strong>{" "}
-                    {formatEther(transaction.value._hex)} ETH
+                    {formatEther(transaction.value.toString())} ETH
                   </p>
                   <p>
                     <strong>Gas Price:</strong>{" "}
-                    {formatUnits(transaction.gasPrice._hex, "gwei")} Gwei
+                    {formatUnits(transaction.gasPrice.toString(), "gwei")} Gwei
                   </p>
                   <p>
                     <strong>Tip:</strong>{" "}
                     {formatUnits(
-                      hexToDecimal(transaction.gasPrice._hex) -
-                        hexToDecimal(data.baseFeePerGas._hex),
+                      hexToDecimal(transaction.gasPrice.toString()) -
+                        hexToDecimal(data.baseFeePerGas.toString()),
                       "gwei"
                     )}{" "}
                     Gwei
